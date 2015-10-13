@@ -1,0 +1,79 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13.10.2015, 19:50:10
+    Author     : Denis
+*/
+
+div.img-cont{
+    position: relative;
+}
+div.img-cont div.text{
+    position: absolute;
+    left: 200px;
+    top: 10px;
+    width: 200px;
+    height: 50px;
+    background: red;
+}
+
+div.row{
+    width: 90%;
+    margin: 20px auto;
+    text-align: center;
+}
+div.block1{
+    height: 10%;
+    margin: 20px auto;
+    background: black;
+}
+div.block2{
+    width: 47%;
+    height: 40%;
+    margin-right:5%;
+    background: red;
+    display: inline-block;
+    border: none;
+}
+div.block3{
+    width: 47%;
+    height: 24%;
+    background: green;
+    display: inline-block;
+    border: none;
+}
+div.block4{
+    height: 10%;
+    margin: 20px auto;
+    background: black;
+}
+
+div#map{
+    width: 505px;
+    border: solid 1px red;
+    height: 50px;
+    position: relative;
+}
+div#map div{
+    display: inline-block;
+    border: solid 1px green;
+    height: 50px;
+    position: relative;
+}
+div#map div span{
+    bottom: -15px;
+    left: 5px;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+}
+div#map div#mapCursor{
+    position: absolute;
+    top: 20px;
+    width: 5px;
+    height: 5px;
+    background: black;
+}
