@@ -64,15 +64,15 @@ $(function () {
                 resKey = keys[i];
             }
             
-            html += keys[Data[i]['smv']] + ' => ' + perc + '<br />';
-            map += '<div style="width: ' + Math.round(perc) * 5 + 'px"><span>' + keys[i] + '</span></div>';
+            html += keys[Data[i]['smv']] + ' => ' + Math.round(perc) + '%<br />';
+            map += '<div style="width: ' + Math.round(perc) * 6 + 'px"><span>' + keys[i] + '</span></div>';
         });
 
-            map += '<div id="mapCursor" style="left: ' + random * 5 + 'px"></div>';
+            map += '<div id="mapCursor" style="left: ' + random * 6 + 'px"></div>';
             
         $('#percents').html(html);
         $('#map').html(map);
-        $('#outputVal').html(resKey);
+        $('#outputVal').val(resKey);
 
         console.log(random);
     });

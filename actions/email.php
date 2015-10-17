@@ -11,12 +11,13 @@ class Email {
     protected $pass = '';
     protected $base = 'project';
     protected $conn;
-    protected $key = 'secret_key123456';
+    protected $key  = 'secret_key123456';
 
     /**
      * construct
      */
-    public function __construct() {
+    public function __construct()
+    {
         try {
             $this->conn = mysql_connect($this->host, $this->user, $this->pass);
             mysql_select_db($this->base, $this->conn);
@@ -27,19 +28,13 @@ class Email {
     }
 
     /**
-     * destruct
-     */
-    protected function __destruct() {
-        mysql_close($this->conn);
-    }
-
-    /**
      * encode text
      * 
      * @param string $text
      * @return string
      */
-    protected function encode($text) {
+    protected function encode($text)
+    {
         $iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_ECB), MCRYPT_RAND);
 
         return mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $this->key, $text, MCRYPT_MODE_ECB, $iv);
@@ -51,7 +46,8 @@ class Email {
      * @param string $text
      * @return string
      */
-    protected function decode($text) {
+    protected function decode($text)
+    {
         $iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_ECB), MCRYPT_RAND);
 
         return mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $this->key, $text, MCRYPT_MODE_ECB, $iv);
@@ -60,7 +56,8 @@ class Email {
     /**
      * save email
      */
-    public function save() {
+    public function save()
+    {
         $email = $_POST['email'];
 
         $parts = explode('@', $email);
@@ -69,7 +66,7 @@ class Email {
 
         $crypttext = $this->encode($uname);
 
-        $sql = 'INSERT INTO emails (email) VALUES (\'' . ($crypttext . '@' . $domen) . '\')';
+        $sql = 'INSERT INTO emails (email) VALUES (\'' . mysql_real_escape_string($crypttext . '@' . $domen) . '\')';
 
         mysql_query($sql, $this->conn);
     }
@@ -79,16 +76,17 @@ class Email {
      * 
      * @return string
      */
-    public function getEmails() {
+    public function getEmails()
+    {
         $sql = 'SELECT * FROM emails';
 
         if (isset($_POST['email_search'])) {
             $sql .= ' WHERE email LIKE \'%' . mysql_real_escape_string($_POST['email_search']) . '%\'';
         }
 
-        $rows = mysql_query($sql, $this->conn);
+        $rows   = mysql_query($sql, $this->conn);
         $emails = array();
-        while ($row = mysql_fetch_array($rows)) {
+        while ($row    = mysql_fetch_array($rows)) {
             $email = explode('@', $row['email']);
 
             $decrypttext = $this->decode($email[0]);

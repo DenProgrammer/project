@@ -1,0 +1,41 @@
+html,body{
+    background: #eee;
+}
+div.menu div.btn-toolbar{
+    text-align: center;
+}
+div.menu div.btn-toolbar div.btn-group{
+    float: none;
+    margin-left: 0px;
+}
+
+div.row{
+    width: 90%;
+    margin: 20px auto;
+    text-align: center;
+}
+div.block1{
+    height: 100px;
+    margin: 20px auto;
+    background: black;
+}
+div.block2{
+    width: 47%;
+    height: 400px;
+    margin-right:5%;
+    background: red;
+    display: inline-block;
+    border: none;
+}
+div.block3{
+    width: 47%;
+    height: 240px;
+    background: green;
+    display: inline-block;
+    border: none;
+}
+div.block4{
+    height: 100px;
+    margin: 20px auto;
+    background: black;
+}

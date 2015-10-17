@@ -16,7 +16,7 @@ $items = array(
     <div class="btn-group">
         <?php
         foreach ($items as $key => $val) {
-            $class = $key == $task ? 'btn active' : 'btn';
+            $class = $key == $task ? 'btn btn-info active' : 'btn btn-info';
             ?>
             <a class="<?php echo $class; ?>" href="index.php?task=<?php echo $key; ?>">
                 <?php echo $val; ?>
