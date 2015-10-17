@@ -30,14 +30,16 @@ class Files {
      */
     protected function addCookies($name)
     {
-        $cookie = isset($_COOKIE['test']) ? $_COOKIE['test'] : array();
+        if (isset($_COOKIE['test'])) {
+            $names = explode(',', $_COOKIE['test']);
 
-        $names = explode(',', $cookie);
-
-        if (!in_array($name, $names)) {
-            $names[] = $name;
+            if (!in_array($name, $names)) {
+                $names[] = $name;
+            }
+            setcookie('test', implode(',', $names));
+        } else {
+            setcookie('test', $name);
         }
-        setcookie('test', implode(',', $names));
     }
 
     /**
@@ -50,8 +52,8 @@ class Files {
     {
         $sections = explode('/', $filepath);
         $filename = end($sections);
-        
-        if (isset($_COOKIE['test'])){
+
+        if (isset($_COOKIE['test'])) {
             $names = explode(',', $_COOKIE['test']);
             return in_array($filename, $names) ? true : false;
         }
